@@ -3,11 +3,10 @@ variable "local_ip" {
   type        = string
 }
 
-variable "vpc_rds_security_group_ids" {
-  description = "RDS VPC security group IDs"
-  type        = list
-  default     = []
-}
+# variable "vpc_rds_security_group_id" {
+#   description = "RDS VPC security group IDs"
+#   type        = string
+# }
 
 variable "db_name" {
   description = "RDS schema / DB"

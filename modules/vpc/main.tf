@@ -28,6 +28,16 @@ resource "aws_subnet" "public_a" {
   availability_zone = data.aws_availability_zones.available.names[0]
 }
 
+resource "aws_subnet" "public_b" {
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = var.subnet_cidrs["public_b"]
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "public_b"
+  }
+  availability_zone = data.aws_availability_zones.available.names[1]
+}
+
 resource "aws_subnet" "private_a" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = var.subnet_cidrs["private_a"]
@@ -70,6 +80,11 @@ resource "aws_default_route_table" "private_rt" {
 # Route table association
 resource "aws_route_table_association" "public_a_association" {
   subnet_id      = aws_subnet.public_a.id
+  route_table_id = aws_route_table.public_rt.id
+}
+
+resource "aws_route_table_association" "public_b_association" {
+  subnet_id      = aws_subnet.public_b.id
   route_table_id = aws_route_table.public_rt.id
 }
 

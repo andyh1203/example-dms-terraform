@@ -34,8 +34,9 @@ variable "subnet_cidrs" {
   type        = map(string)
   default = {
     "public_a" : "10.0.1.0/24"
-    "private_a" : "10.0.2.0/24",
+    "private_a" : "10.0.2.0/24"
     "private_b" : "10.0.3.0/24"
+    "public_b" : "10.0.4.0/24"
   }
 }
 
